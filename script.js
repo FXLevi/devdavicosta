@@ -65,8 +65,26 @@ categorias.forEach((botao) => {
       const ativa = item === botao;
       item.classList.toggle("ativa", ativa);
       item.setAttribute("aria-selected", String(ativa));
+      item.tabIndex = ativa ? 0 : -1;
     });
+    painel?.setAttribute("aria-labelledby", botao.id);
     mostrarHabilidades(categoria);
+  });
+
+  // Padrão WAI-ARIA para abas: setas, Home e End movem a seleção.
+  botao.addEventListener("keydown", (evento) => {
+    const lista = [...categorias];
+    const atual = lista.indexOf(botao);
+    const destino = {
+      ArrowRight: (atual + 1) % lista.length,
+      ArrowLeft: (atual - 1 + lista.length) % lista.length,
+      Home: 0,
+      End: lista.length - 1,
+    }[evento.key];
+    if (destino === undefined) return;
+    evento.preventDefault();
+    lista[destino].focus();
+    lista[destino].click();
   });
 });
 
@@ -80,6 +98,10 @@ const linhasTitulo = [1, 2, 3].map((numero) =>
 
 if (titulo && linhasTitulo.every(Boolean)) {
   const [linha1, linha2, linha3] = linhasTitulo;
+  // O HTML já traz o texto final (útil para buscadores e sem JavaScript).
+  // Aqui ele é limpo para a animação recomeçar do zero.
+  linhasTitulo.forEach((linha) => linha.replaceChildren());
+  titulo.classList.add("titulo-pronto");
   const textoFinal = ["Olá, eu sou o Davi", "Costa", "Desenvolvedor Backend"];
   const saudacao = "Olá, mundo";
   const cursor = document.createElement("span");
@@ -485,20 +507,29 @@ document.querySelectorAll(".projeto-galeria").forEach((card) => {
   if (!modal || !iframe || !titulo || !link || !fechar) return;
 
   let botaoAnterior = null;
+  const conteudoDaPagina = document.querySelectorAll(
+    "body > header, body > main, body > footer",
+  );
 
   document.querySelectorAll(".btn-ver-projeto").forEach((botao) => {
-    botao.addEventListener("click", () => {
+    botao.addEventListener("click", (evento) => {
       const url = botao.dataset.url;
 
       if (!url) return;
+      // Ctrl/Cmd/Shift + clique abrem o link normalmente (nova aba ou janela).
+      if (evento.metaKey || evento.ctrlKey || evento.shiftKey) return;
+      evento.preventDefault();
 
       botaoAnterior = botao;
       titulo.textContent = botao.dataset.nome || "Projeto";
+      iframe.title = `Galeria de telas: ${botao.dataset.nome || "Projeto"}`;
       iframe.src = url;
       link.href = url;
 
       modal.hidden = false;
       document.body.classList.add("modal-aberto");
+      // O restante da página fica inerte enquanto o modal está aberto.
+      conteudoDaPagina.forEach((el) => (el.inert = true));
       fechar.focus();
     });
   });
@@ -507,6 +538,7 @@ document.querySelectorAll(".projeto-galeria").forEach((card) => {
     modal.hidden = true;
     iframe.src = "about:blank";
     document.body.classList.remove("modal-aberto");
+    conteudoDaPagina.forEach((el) => (el.inert = false));
     botaoAnterior?.focus();
   }
 

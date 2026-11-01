@@ -1,0 +1,43 @@
+PORTFÓLIO DAVI COSTA — VERSÃO RESPONSIVA / MOBILE
+
+INSTRUÇÕES
+1. Extraia o ZIP e abra a pasta "port".
+2. Abra index.html no navegador ou publique a pasta inteira em hospedagem estática.
+3. Mantenha as pastas "img", "assets" e "demo" junto com index.html, style.css e script.js.
+4. Para editar o layout principal, use style.css na raiz; para a interatividade, script.js na raiz.
+
+NOVIDADES PARA CELULAR
+- Menu de navegação recolhível (hambúrguer) com suporte a toque e teclado.
+- Seções, cartões e rodapé adaptados a telas pequenas.
+- Galerias de imagens com gestos para avançar/voltar e barra de progresso (sem contador numérico).
+- Currículo com visualização alternativa em celulares e opções de baixar PDF/Word.
+- Formulário de contato com campos e botões ajustados para smartphones.
+- Modais de projetos em tela cheia.
+
+PROJETOS
+- demo/mindflow/index.html: apresentação visual de 15 capturas das telas do MindFlow.
+- demo/escolar/index.html: apresentação visual de 23 capturas das telas do Sistema Escolar.
+- A apresentação visual NÃO é o sistema PHP/MySQL em execução e não modifica dados.
+- No celular, escolha a tela no seletor e use "Ampliar" para ver detalhes.
+
+E-MAIL
+O formulário prepara uma mensagem endereçada a davict2007@gmail.com no aplicativo
+padrão de e-mail do visitante. O site não envia e-mails diretamente do servidor.
+
+OBSERVAÇÃO
+Este pacote inclui todos os arquivos da versão enviada, mais os ajustes para mobile.
+Os diretórios assets/css e assets/js existentes no arquivo original foram preservados,
+mas a página usa os arquivos style.css e script.js na raiz.
+
+TIPOGRAFIA (ATUALIZAÇÃO)
+- Sansation: título animado, descrições, menus, links e botões.
+- Courier New: etiquetas técnicas.
+- No mobile, o título tem fonte proporcional ao parágrafo e todas as palavras
+  compartilham o mesmo tamanho; Davi Costa aparece junto e destacado em amarelo.
+
+SEO (ATUALIZAÇÃO)
+- Leia RELATORIO-SEO.md. ANTES DE PUBLICAR, troque o marcador https://SEU-DOMINIO.com.br
+  pelo endereço real do site em index.html, demo/*/index.html, robots.txt, sitemap.xml e .htaccess.
+- Arquivos novos: robots.txt, sitemap.xml, 404.html, .htaccess (Apache), _redirects (Netlify/Cloudflare),
+  favicon.ico, img/og-image.jpg e miniaturas leves em img/*/thumbs/.
+- Ao adicionar uma imagem a uma galeria, crie também a miniatura (256x144) em thumbs/ com o mesmo nome.

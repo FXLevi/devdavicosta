@@ -1,0 +1,5 @@
+# Redirecionamentos 301 para Netlify e Cloudflare Pages.
+# (O HTTPS já é forçado automaticamente nessas hospedagens.)
+/index.html                    /                   301
+/demo/mindflow/index.html      /demo/mindflow/     301
+/demo/escolar/index.html       /demo/escolar/      301

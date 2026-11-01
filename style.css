@@ -308,19 +308,7 @@ main {
 /* Grade tecnica visivel sobre a imagem, sem impedir cliques. */
 
 .imagem-preview::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.21) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.21) 1px, transparent 1px),
-    radial-gradient(circle at 60% 45%, rgba(35, 132, 255, 0.17), transparent 65%);
-  background-size:
-    42px 42px,
-    42px 42px,
-    100% 100%;
+  display: none;
 }
 
 .imagem-preview::after {
@@ -528,6 +516,14 @@ main {
   color: #ffffff;
   background: #315a78;
   border: 2px solid transparent;
+}
+
+.python {
+  color: #ffffff;
+  padding: 0 5px;
+  background: #3776AB;
+  border: 2px solid transparent;
+  border-radius: 5px;
 }
 
 /* ==================== CERTIFICAÇÕES ==================== */

@@ -1,1 +1,63 @@
-LEIA-ME.txt
+# Configurações locais e informações sensíveis
+.env
+.env.*
+!.env.example
+
+# Dependências
+node_modules/
+
+# Configurações dos editores
+.vscode/
+.idea/
+
+# Arquivos temporários
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Backups e arquivos compactados
+*.zip
+*.rar
+*.7z
+backups/
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+*~
+
+# Cache do Python, caso utilize
+__pycache__/
+*.pyc
+
+# Arquivos temporários de testes
+coverage/
+.cache/
+
+# Configurações locais
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/
+
+# Dependências e cache
+node_modules/
+__pycache__/
+.cache/
+
+# Temporários
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+
+# Backups compactados
+*.zip
+*.rar
+
+# Sistema operacional
+.DS_Store
+Thumbs.db

@@ -1,0 +1,53 @@
+# ============================================================
+# Apache (cPanel, Hostinger, Locaweb etc.) — redirecionamentos,
+# erro 404, compressão e cache. Ignorado por hospedagens que não
+# usam Apache (veja o arquivo _redirects para Netlify/Cloudflare).
+# Pressupõe o site publicado na RAIZ do domínio.
+# ============================================================
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1) Sempre HTTPS (301)
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # 2) URLs sem "index.html": /index.html -> /  e  /demo/x/index.html -> /demo/x/
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+  RewriteRule ^(.*/)?index\.html$ /$1 [L,R=301,NC]
+
+  # 3) (Opcional) Domínio preferido: descomente UMA das opções e troque o domínio.
+  # Sem www -> www:
+  # RewriteCond %{HTTP_HOST} ^SEU-DOMINIO\.com\.br$ [NC]
+  # RewriteRule ^ https://www.SEU-DOMINIO.com.br%{REQUEST_URI} [L,R=301]
+  # www -> sem www:
+  # RewriteCond %{HTTP_HOST} ^www\.SEU-DOMINIO\.com\.br$ [NC]
+  # RewriteRule ^ https://SEU-DOMINIO.com.br%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Compressão de texto
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json application/ld+json application/xml image/svg+xml
+</IfModule>
+
+# Cache do navegador (arquivos sem hash no nome: prazos moderados)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                       "access plus 1 week"
+  ExpiresByType text/html              "access plus 0 seconds"
+  ExpiresByType text/css               "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+  ExpiresByType image/webp             "access plus 1 month"
+  ExpiresByType image/jpeg             "access plus 1 month"
+  ExpiresByType image/png              "access plus 1 month"
+  ExpiresByType image/svg+xml          "access plus 1 month"
+  ExpiresByType image/x-icon           "access plus 1 month"
+  ExpiresByType application/pdf        "access plus 1 week"
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+</IfModule>

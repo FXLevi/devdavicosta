@@ -1,0 +1,7 @@
+# robots.txt — https://SEU-DOMINIO.com.br/robots.txt
+# Todo o site pode ser rastreado (inclusive CSS, JS e imagens, que o Googlebot
+# precisa para renderizar a página corretamente).
+User-agent: *
+Allow: /
+
+Sitemap: https://SEU-DOMINIO.com.br/sitemap.xml
